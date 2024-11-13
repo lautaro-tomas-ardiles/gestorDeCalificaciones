@@ -33,24 +33,21 @@ object SQLiteconnection {
             // Aquí iría el código SQL para crear las tablas en la base de datos
             val sql = """
                 CREATE TABLE IF NOT EXISTS alumnos (
-                    dniA TEXT PRIMARY KEY,
+                    dniA TEXT,
                     nombreCompletoA TEXT NOT NULL
                 );
                 CREATE TABLE IF NOT EXISTS profesores (
-                    dniP TEXT PRIMARY KEY,
+                    dniP TEXT
                     nombreCompletoP TEXT NOT NULL
                 );
                 CREATE TABLE IF NOT EXISTS materias (
-                    dniP TEXT NOT NULL,
-                    materia TEXT NOT NULL,
-                    FOREIGN KEY(dniP) REFERENCES profesores(dniP)
+                    dniP TEXT,
+                    materia TEXT NOT NULL
                 );
                 CREATE TABLE IF NOT EXISTS notas (
                     dniP TEXT NOT NULL,
                     dniA TEXT NOT NULL,
-                    nota REAL NOT NULL,
-                    FOREIGN KEY(dniP) REFERENCES profesores(dniP),
-                    FOREIGN KEY(dniA) REFERENCES alumnos(dniA)
+                    nota REAL NOT NULL
                 );
             """
             stmt.executeUpdate(sql)
